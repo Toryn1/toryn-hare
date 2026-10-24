@@ -185,6 +185,19 @@
   }
   @keyframes ring{ to{ transform:scale(1.5); opacity:0; } }
   @media (prefers-reduced-motion:reduce){ .bubble{ animation:none; } }
+  .bubble.pending{ opacity:0; animation:none; }
+  .bubble.drop{
+    opacity:0;
+    animation:dropIn .7s cubic-bezier(.34,1.56,.64,1) forwards, bob var(--dur,6s) ease-in-out infinite;
+    animation-delay:var(--ddelay,0s), calc(var(--ddelay,0s) + .7s);
+  }
+  @keyframes dropIn{
+    0%{ opacity:0; transform:translateY(-160px) scale(.85); }
+    65%{ opacity:1; transform:translateY(8px) scale(1.04); }
+    85%{ transform:translateY(-4px) scale(.99); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  @media (prefers-reduced-motion:reduce){ .bubble.pending{ opacity:1; } .bubble.drop{ animation:none; opacity:1; } }
 
   /* ---------- möchte ---------- */
   .manifesto{ display:grid; gap:16px; }
@@ -229,21 +242,8 @@
   .row-list .k{ font-weight:600; }
   .row-list .v{ color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-align:right; white-space:nowrap; }
 
-  /* ---------- freizeit: large faded sport illustrations, no circles ---------- */
-  .stamp-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px 6px; }
-  .hobby{
-    position:relative; aspect-ratio:1/1;
-    display:flex; align-items:flex-end; justify-content:center;
-  }
-  .hobby svg{
-    position:absolute; left:50%; top:4%; width:86%; height:86%; transform:translateX(-50%);
-    stroke:var(--forest-ink); fill:none; stroke-width:1; opacity:.22;
-  }
-  .hobby span{
-    position:relative; z-index:1; padding-bottom:3px;
-    font-size:9.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; letter-spacing:.02em;
-  }
-  @media (min-width:640px){ .stamp-row{ gap:10px 14px; } .hobby svg{ opacity:.26; } }
+  /* ---------- freizeit: same bubbles as "Ich kann", dropping in one after another ---------- */
+  .stamp-row{ display:flex; flex-wrap:wrap; justify-content:center; align-content:center; gap:10px; padding:6px 0; min-height:180px; }
 
   /* ---------- kontakt ---------- */
   .kontakt-grid{ display:grid; gap:12px; }
@@ -512,15 +512,15 @@
     <div class="panel-inner">
       <h2 class="ttl">Freizeit</h2>
       <p class="lede">Am liebsten draussen, am und im Wasser.</p>
-      <div class="stamp-row">
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M2 20 15 4"/><path d="M15 4c3 2 3 7 1 10"/><path d="M16 14c-1 1.5-3 1.5-4 0"/><path d="M5 17c1.5-1.5 4-1.5 5.5 0-1.5 1.5-4 1.5-5.5 0Z"/><path d="M10.5 17l2-1.2v2.4z"/></svg><span>Angeln</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M4 10c0-3 2.5-5 6-5s6 2 6 5-2.5 6-6 6-6-3-6-6Z"/><circle cx="8" cy="10" r="1.6"/><circle cx="12.5" cy="10" r="1.6"/><path d="M16 7c2-1 3 0 3 2s-1 2-1 2"/></svg><span>Tauchen</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7 3-5 5 3Z"/></svg><span>Reisen</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M7 20V4l10 3.2L7 11.5"/><path d="M3 20h12"/><circle cx="15.5" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg><span>Golf</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7.5" ry="10"/><path d="M12 2v20M6 7.5h12M6 16.5h12"/></svg><span>Rugby</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M3 9h7"/><circle cx="14.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/><path d="M13 9c1 2 3 3 5 2.5"/><path d="M17.5 11.5c1 2 1 4-.5 6"/></svg><span>Turmspringen</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M2 15c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M2 19c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M13 3 7 13h7l-2.5 7"/></svg><span>Wellenreiten</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M3 14h18l-3 4H6Z"/><circle cx="7.5" cy="19" r="1.6"/><circle cx="16.5" cy="19" r="1.6"/><path d="M5.5 14l1.5-2.5M18.5 14l-1.5-2.5"/></svg><span>Skate</span></div>
+      <div class="stamp-row" id="freizeitBubbles">
+        <div class="bubble pending" style="--c:var(--forest-ink);--ddelay:0s">Angeln</div>
+        <div class="bubble pending s" style="--c:var(--brass);--ddelay:.12s">Tauchen</div>
+        <div class="bubble pending" style="--c:var(--slate);--ddelay:.24s">Reisen</div>
+        <div class="bubble pending s" style="--c:var(--neutral);--ddelay:.36s">Golf</div>
+        <div class="bubble pending l" style="--c:var(--forest-ink);--ddelay:.48s">Rugby</div>
+        <div class="bubble pending" style="--c:var(--brass);--ddelay:.6s">Turmspringen</div>
+        <div class="bubble pending" style="--c:var(--slate);--ddelay:.72s">Wellenreiten</div>
+        <div class="bubble pending s" style="--c:var(--neutral);--ddelay:.84s">Skate</div>
       </div>
     </div>
     <span class="stop-tag">F — Freizeit</span>
@@ -644,6 +644,27 @@
         if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
       });
     });
+
+    // freizeit bubbles: drop in one after another once the panel is visible
+    var freizeitField = document.getElementById('freizeitBubbles');
+    if(freizeitField){
+      var dropIn = function(){
+        freizeitField.querySelectorAll('.bubble.pending').forEach(function(b){
+          b.classList.remove('pending');
+          b.classList.add('drop');
+        });
+      };
+      if(!reduceMotion && 'IntersectionObserver' in window){
+        var fio = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){ dropIn(); fio.disconnect(); }
+          });
+        }, {threshold:0.35});
+        fio.observe(freizeitField);
+      } else {
+        dropIn();
+      }
+    }
 
     // copy chips
     document.querySelectorAll('.c-chip:not(.c-link)').forEach(function(chip){
