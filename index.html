@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Toryn Hare — That's me</title>
+<meta name="description" content="Persönlicher One-Pager von Toryn Hare, Kaufmann EFZ Marketing &amp; Kommunikation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Fraunces:ital,wght@0,500;1,500&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F0E6;
+    --paper-raised:#EAE3D1;
+    --ink:#15241B;
+    --ink-soft:rgba(21,36,27,.62);
+    --ink-faint:rgba(21,36,27,.38);
+    --forest:#1E4A37;
+    --forest-ink:#163528;
+    --brass:#8E6B29;
+    --slate:#4C6878;
+    --neutral:#6E6650;
+    --line:rgba(21,36,27,.18);
+    --band-bg:#0D2318;
+    --band-fg:#F1ECDD;
+    --band-fg-soft:rgba(241,236,221,.68);
+    --band-line:rgba(241,236,221,.22);
+    --band-accent:#7FC9A1;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#10180F; --paper-raised:#1A2318;
+      --ink:#ECE7D8; --ink-soft:rgba(236,231,216,.66); --ink-faint:rgba(236,231,216,.4);
+      --forest:#6FB696; --forest-ink:#8FCDAE; --brass:#D8AE69; --slate:#8FB4C4; --neutral:#BDB49F;
+      --line:rgba(236,231,216,.18);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#10180F; --paper-raised:#1A2318;
+    --ink:#ECE7D8; --ink-soft:rgba(236,231,216,.66); --ink-faint:rgba(236,231,216,.4);
+    --forest:#6FB696; --forest-ink:#8FCDAE; --brass:#D8AE69; --slate:#8FB4C4; --neutral:#BDB49F;
+    --line:rgba(236,231,216,.18);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;overflow:hidden;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Work Sans',system-ui,sans-serif; font-size:16px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3{text-wrap:balance; margin:0;}
+  button{font-family:inherit;}
+
+  /* ---------- header (always on, outside the track) ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:14px max(18px, env(safe-area-inset-left,0px)) 12px max(18px, env(safe-area-inset-right,0px));
+    padding-top:calc(14px + env(safe-area-inset-top,0px));
+    background:color-mix(in srgb, var(--paper) 85%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  body::before{
+    content:""; position:fixed; inset:0 0 auto; z-index:49;
+    height:env(safe-area-inset-top,0px); background:var(--paper);
+  }
+  .brand{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:16px; letter-spacing:.02em; text-transform:uppercase; white-space:nowrap; }
+  .dots{ display:flex; align-items:center; gap:7px; }
+  .dots button{
+    width:8px; height:8px; border-radius:50%; border:1px solid var(--ink-faint);
+    background:transparent; padding:0; cursor:pointer;
+  }
+  .dots button.on{ background:var(--forest-ink); border-color:var(--forest-ink); }
+  :focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
+  .hdr-cta{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase;
+    border:1px solid var(--ink); border-radius:3px; padding:7px 13px; background:var(--ink); color:var(--paper);
+    cursor:pointer; white-space:nowrap;
+  }
+  .progress{ position:fixed; left:0; right:0; bottom:0; height:2px; z-index:50; background:var(--line); }
+  .progress i{ display:block; height:100%; width:0%; background:var(--brass); transition:width .1s linear; }
+
+  /* ---------- track ---------- */
+  #track{
+    height:100%; display:flex; overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none; -ms-overflow-style:none;
+  }
+  #track::-webkit-scrollbar{ display:none; }
+
+  .panel{
+    flex:0 0 100vw; height:100%; position:relative;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top:calc(58px + env(safe-area-inset-top,0px));
+    padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
+    padding-left:max(20px, env(safe-area-inset-left,0px));
+    padding-right:max(20px, env(safe-area-inset-right,0px));
+    border-right:2px dashed var(--line);
+    scroll-snap-align:start;
+    overflow-y:auto;
+  }
+  .panel-inner{ max-width:620px; margin:0 auto; width:100%; }
+  .stop-tag{
+    position:absolute; left:max(20px, env(safe-area-inset-left,0px)); bottom:14px;
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- hero (Scarface-style: portrait fills the left half and fades into the dark ground) ---------- */
+  .panel.dark{ background:var(--band-bg); color:var(--band-fg); border-right-color:var(--band-line); }
+  .panel.dark .stop-tag{ color:var(--band-fg-soft); }
+  .hero-abstract{ position:relative; min-height:300px; margin-bottom:6px; }
+  .hero-photo-half{
+    position:absolute; top:-6px; bottom:-6px;
+    left:calc(-1 * max(20px, env(safe-area-inset-left,0px)));
+    width:52%; overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right, black 48%, transparent 94%);
+    mask-image:linear-gradient(to right, black 48%, transparent 94%);
+  }
+  .hero-photo-half img{ width:100%; height:100%; object-fit:cover; object-position:34% 16%; filter:grayscale(1) contrast(1.2) brightness(.92); }
+  .hero-photo-half::after{ content:""; position:absolute; inset:0; background:linear-gradient(170deg, rgba(30,74,55,.46), rgba(13,35,24,.9)); mix-blend-mode:multiply; }
+  .hero-text{ position:relative; z-index:2; margin-left:39%; padding-top:6px; }
+  .hero-kicker{ font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:14px; color:var(--band-accent); margin:0 0 2px; }
+  .hero-text h1{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(30px,9.5vw,66px); line-height:.86; letter-spacing:-.01em; }
+  .hero-text h1 .last{ color:var(--band-accent); }
+  .hero-sub{ margin-top:18px; font-size:14px; color:var(--band-fg-soft); max-width:46ch; }
+  .hero-sub strong{ color:var(--band-fg); font-weight:600; }
+  .hero-row{ margin-top:22px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .pill-live{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.03em; text-transform:uppercase;
+    color:var(--band-bg); background:var(--band-accent); border-radius:3px; padding:7px 12px; font-weight:600;
+  }
+  .hero-meta-txt{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--band-fg-soft); letter-spacing:.03em; text-transform:uppercase; }
+  .scroll-cue{ margin-top:24px; display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--band-fg-soft); }
+  .scroll-cue svg{ animation:nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge{ 0%,100%{transform:translateX(0);} 50%{transform:translateX(5px);} }
+
+  /* ---------- headings shared ---------- */
+  .ttl{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(26px,6vw,38px); letter-spacing:-.01em; margin-bottom:8px; }
+  .lede{ color:var(--ink-soft); font-size:14px; max-width:48ch; margin-bottom:20px; }
+
+  /* ---------- kann / bubbles ---------- */
+  .legend{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:18px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.03em; text-transform:uppercase; color:var(--ink-soft); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .legend i{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .bubble-field{ display:flex; flex-wrap:wrap; justify-content:center; align-content:center; gap:8px; padding:4px 0; }
+  .bubble{
+    --c: var(--forest-ink); --d:80px;
+    width:var(--d); height:var(--d); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:6px; cursor:pointer; user-select:none; position:relative;
+    font-family:'IBM Plex Mono',monospace; font-size:9px; line-height:1.2; color:var(--ink);
+    border:1.5px solid var(--c);
+    background:color-mix(in srgb, var(--c) 13%, var(--paper));
+    animation:bob var(--dur,6s) ease-in-out infinite; animation-delay:var(--del,0s);
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1), border-radius .3s ease, background .3s ease;
+  }
+  .bubble::before{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.65), transparent 46%);
+    mix-blend-mode:overlay; pointer-events:none;
+  }
+  .bubble:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; }
+  .bubble.s{ --d:64px; font-size:8.5px; }
+  .bubble.l{ --d:96px; font-size:9.5px; }
+  @media (min-width:640px){
+    .bubble{ --d:108px; font-size:11px; }
+    .bubble.s{ --d:88px; font-size:10px; }
+    .bubble.l{ --d:128px; font-size:11.5px; }
+    .bubble-field{ gap:10px; padding:6px 0; }
+  }
+  @keyframes bob{ 0%,100%{ transform:translateY(0) rotate(0deg); } 50%{ transform:translateY(-10px) rotate(2deg); } }
+  .bubble.is-popped{ transform:scale(.88) !important; border-radius:20%; background:var(--paper-raised); animation-play-state:paused; }
+  .bubble.just-popped::after{
+    content:""; position:absolute; inset:-12px; border-radius:50%; border:2px solid var(--c);
+    animation:ring .5s ease-out forwards;
+  }
+  @keyframes ring{ to{ transform:scale(1.5); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .bubble{ animation:none; } }
+
+  /* ---------- möchte ---------- */
+  .manifesto{ display:grid; gap:16px; }
+  .manifesto p{ font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:clamp(21px,5.5vw,30px); line-height:1.3; }
+  .manifesto p em{ color:var(--forest-ink); font-style:italic; }
+
+  /* ---------- werdegang rail ---------- */
+  .era{ flex:0 0 78vw; display:flex; flex-direction:column; justify-content:center; }
+  .era .panel-inner{ max-width:none; }
+  .era-block{ min-height:84px; display:flex; }
+  .era-block.align-end{ align-items:flex-end; }
+  .era-block.align-start{ align-items:flex-start; }
+  .era-block.empty{ min-height:84px; }
+  .era-card{ max-width:280px; }
+  .era-date{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--brass); letter-spacing:.03em; margin-bottom:4px; }
+  .era-title{ font-weight:700; font-size:16px; line-height:1.3; }
+  .era-sub{ color:var(--ink-soft); font-size:13px; margin-top:3px; }
+  .era-tag{ display:inline-block; margin-top:7px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--forest-ink); border:1px solid var(--line); border-radius:3px; padding:2px 8px; }
+  .era-badge{ display:inline-block; background:var(--lc,var(--brass)); color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:10px; border-radius:3px; padding:2px 7px; margin-right:7px; letter-spacing:.02em; }
+  .era-line-row{ position:relative; height:18px; display:flex; align-items:center; }
+  .era-line-row::before{ content:""; position:absolute; left:calc(-1 * max(20px, env(safe-area-inset-left,0px))); right:calc(-1 * max(20px, env(safe-area-inset-right,0px))); top:50%; height:4px; border-radius:2px; background:var(--lc,var(--brass)); }
+  .era-node{ position:relative; z-index:1; width:14px; height:14px; border-radius:50%; background:var(--paper); border:3px solid var(--lc,var(--brass)); margin-left:6%; box-shadow:0 0 0 1px var(--lc,var(--brass)); }
+  @media (min-width:860px){ .era{ flex-basis:46vw; } }
+
+  /* ---------- werdegang overview map (ZVV-style schematic network) ---------- */
+  .map-svg{ width:100%; height:auto; display:block; max-width:540px; margin:4px auto 0; overflow:visible; }
+  .map-svg .ln{ fill:none; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+  .map-svg .arrow{ fill:none; stroke-width:3; stroke-linecap:round; }
+  .map-svg .hub{ fill:var(--paper); stroke:var(--ink); stroke-width:1.6; }
+  .map-svg .node{ fill:var(--paper); stroke-width:3; }
+  .map-svg .place{ font-family:'Work Sans',sans-serif; font-weight:700; font-size:12px; fill:var(--ink); }
+  .map-svg .sub{ font-family:'IBM Plex Mono',monospace; font-size:8px; fill:var(--ink-soft); }
+  .map-svg .badge-txt{ font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:8.5px; fill:#fff; text-anchor:middle; dominant-baseline:middle; }
+
+  /* ---------- ausbildung / sprachen ---------- */
+  .two-col{ display:flex; flex-wrap:wrap; gap:36px; }
+  .two-col > div{ flex:1 1 220px; }
+  .colhead{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--brass); margin-bottom:12px; }
+  .row-list{ display:grid; gap:0; }
+  .row-list > div{ display:flex; justify-content:space-between; gap:12px; border-top:1px solid var(--line); padding-block:10px; font-size:13.5px; }
+  .row-list > div:first-child{ border-top:none; }
+  .row-list .k{ font-weight:600; }
+  .row-list .v{ color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-align:right; white-space:nowrap; }
+
+  /* ---------- freizeit stamps ---------- */
+  .stamp-row{ display:flex; flex-wrap:wrap; gap:16px; }
+  .hobby{
+    width:78px; height:78px; border-radius:50%; border:1.5px dashed var(--ink-faint);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    text-align:center;
+  }
+  .hobby svg{ width:20px; height:20px; stroke:var(--forest-ink); fill:none; stroke-width:1.6; }
+  .hobby span{ font-size:9.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; letter-spacing:.02em; }
+  .hobby:nth-child(2n){ transform:rotate(-4deg); }
+  .hobby:nth-child(3n){ transform:rotate(5deg); }
+  .hobby:nth-child(5n){ transform:rotate(-7deg); }
+
+  /* ---------- kontakt ---------- */
+  .kontakt-grid{ display:grid; gap:12px; }
+  .c-chip{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    border:1px solid var(--band-line); border-radius:3px; padding:15px 16px;
+    background:rgba(241,236,221,.04); cursor:pointer; text-align:left; width:100%; color:inherit;
+  }
+  .c-chip .c-label{ font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--band-fg-soft); display:block; margin-bottom:2px; }
+  .c-chip .c-val{ font-size:15px; font-weight:600; }
+  .c-chip .c-copy{ font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; border:1px solid var(--band-line); border-radius:3px; padding:5px 9px; white-space:nowrap; transition:background .2s ease, color .2s ease; }
+  .c-chip.copied .c-copy{ background:var(--band-accent); color:var(--band-bg); border-color:var(--band-accent); }
+  .c-loc{ font-size:13px; color:var(--band-fg-soft); margin-top:4px; }
+  .barcode{ margin-top:22px; height:30px; display:flex; gap:2px; align-items:flex-end; opacity:.6; }
+  .barcode i{ display:block; width:2px; background:var(--band-fg-soft); }
+
+  @media (max-width:640px){
+    .era{ flex-basis:88vw; }
+    .hdr-cta{ padding:6px 10px; }
+    .hero-photo-half{ width:58%; }
+    .hero-text{ margin-left:42%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="brand">Toryn Hare</span>
+  <nav class="dots" id="dots"></nav>
+  <button class="hdr-cta" id="hdrCta" type="button">Kontakt</button>
+</header>
+
+<div id="track">
+
+  <section class="panel dark stop" id="p-hero">
+    <div class="panel-inner">
+      <div class="hero-abstract">
+        <div class="hero-photo-half"><img src="portrait.jpg" alt="Portrait von Toryn Hare"></div>
+        <div class="hero-text">
+          <p class="hero-kicker">That's me —</p>
+          <h1>Toryn<br><span class="last">Hare</span></h1>
+        </div>
+      </div>
+      <p class="hero-sub"><strong>Kaufmann EFZ · Marketing &amp; Kommunikation</strong><br>Weitergebildet zum Digital Marketing Manager, KV Business School Zürich.</p>
+      <div class="hero-row">
+          <span class="pill-live">Offen für neue Projekte</span>
+          <span class="hero-meta-txt">CH / AU · *2005 · Zürich</span>
+        </div>
+        <div class="scroll-cue"><svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 12h16M14 6l6 6-6 6"/></svg>weiter</div>
+    </div>
+    <span class="stop-tag">A — Profil</span>
+  </section>
+
+  <section class="panel stop" id="p-kann">
+    <div class="panel-inner">
+      <h2 class="ttl">Ich kann</h2>
+      <div class="legend">
+        <span><i style="background:var(--forest-ink)"></i>Kreation</span>
+        <span><i style="background:var(--brass)"></i>Koordination</span>
+        <span><i style="background:var(--slate)"></i>Kunden &amp; Admin</span>
+        <span><i style="background:var(--neutral)"></i>Tools</span>
+      </div>
+      <div class="bubble-field">
+        <div class="bubble l" style="--c:var(--forest-ink);--dur:6.4s;--del:.1s">Kampagnen: Print → Online</div>
+        <div class="bubble s" style="--c:var(--forest-ink);--dur:5.6s;--del:.6s">Briefing → Realisation</div>
+        <div class="bubble" style="--c:var(--forest-ink);--dur:7s;--del:0s">Online-Marketing-Strategie</div>
+        <div class="bubble s" style="--c:var(--forest-ink);--dur:5.9s;--del:.3s">Konkurrenzanalyse</div>
+        <div class="bubble" style="--c:var(--brass);--dur:6.2s;--del:.4s">Budget &amp; Offerte</div>
+        <div class="bubble s" style="--c:var(--brass);--dur:5.3s;--del:.9s">Timing &amp; Verrechnung</div>
+        <div class="bubble l" style="--c:var(--brass);--dur:6.8s;--del:.2s">Externe Dienstleister koordinieren</div>
+        <div class="bubble s" style="--c:var(--brass);--dur:6.1s;--del:.7s">Briefingsitzungen</div>
+        <div class="bubble" style="--c:var(--slate);--dur:5.7s;--del:.15s">Kundenkorrespondenz</div>
+        <div class="bubble s" style="--c:var(--slate);--dur:6.5s;--del:.5s">Empfang &amp; Beratung</div>
+        <div class="bubble" style="--c:var(--slate);--dur:6s;--del:.35s">Personaladministration</div>
+        <div class="bubble s" style="--c:var(--slate);--dur:5.4s;--del:.8s">Jobcontrolling</div>
+        <div class="bubble l" style="--c:var(--neutral);--dur:7.2s;--del:.25s">Adobe Creative Suite</div>
+        <div class="bubble" style="--c:var(--neutral);--dur:6.3s;--del:.55s">Content &amp; Social Media</div>
+        <div class="bubble s" style="--c:var(--neutral);--dur:5.8s;--del:.1s">Excel · PPT · Outlook</div>
+        <div class="bubble" style="--c:var(--neutral);--dur:6.6s;--del:.65s">Immer was Neues lernen</div>
+      </div>
+    </div>
+    <span class="stop-tag">B — Kompetenzen (antippen)</span>
+  </section>
+
+  <section class="panel stop" id="p-moechte">
+    <div class="panel-inner">
+      <h2 class="ttl">Ich möchte</h2>
+      <div class="manifesto">
+        <p>Neu gelernte <em>Skills</em> anwenden und erweitern.</p>
+        <p>Eigene <em>Erfahrungen und Ideen</em> einbringen.</p>
+        <p>Kreative, innovative <em>Projekte</em> begleiten.</p>
+      </div>
+    </div>
+    <span class="stop-tag">C — Haltung</span>
+  </section>
+
+  <section class="panel stop" id="p-map">
+    <div class="panel-inner">
+      <h2 class="ttl">Werdegang</h2>
+      <p class="lede">Meine Stationen, als Liniennetz — wie der ZVV es zeichnen würde.</p>
+      <svg class="map-svg" viewBox="0 0 460 330" role="img" aria-label="Netzplan meiner Stationen: Zürich (Wirz Group, MEDICA, KV Business School), Flughafen Dübendorf und Australien">
+        <path class="ln" d="M190,180 L90,80" stroke="#1E5FAE"/>
+        <path class="ln" d="M190,180 L290,70" stroke="#6A3FA0"/>
+        <path class="ln" d="M190,180 L95,275" stroke="#1E7A4C"/>
+        <path class="ln" d="M190,180 L360,150" stroke="#C53030"/>
+        <path class="ln" d="M190,180 L290,250 L440,315" stroke="#D9822B"/>
+        <path class="arrow" d="M440,315 l-11,-9 M440,315 l-15,1" stroke="#D9822B"/>
+
+        <rect class="hub" x="160" y="173" width="60" height="14" rx="7"/>
+        <text class="place" x="190" y="204" text-anchor="middle">Zürich</text>
+
+        <rect x="129" y="123" width="22" height="14" rx="3" fill="#1E5FAE"/>
+        <text class="badge-txt" x="140" y="131">L1</text>
+        <circle class="node" cx="90" cy="80" r="5" stroke="#1E5FAE"/>
+        <text class="place" x="78" y="58" text-anchor="end">Wirz Group AG</text>
+        <text class="sub" x="78" y="70" text-anchor="end">Zürich · 2021–2024</text>
+
+        <rect x="229" y="118" width="22" height="14" rx="3" fill="#6A3FA0"/>
+        <text class="badge-txt" x="240" y="126">L5</text>
+        <circle class="node" cx="290" cy="70" r="5" stroke="#6A3FA0"/>
+        <text class="place" x="302" y="58">KV Business</text>
+        <text class="sub" x="302" y="70">Zürich · 2026</text>
+
+        <rect x="131" y="220" width="22" height="14" rx="3" fill="#1E7A4C"/>
+        <text class="badge-txt" x="142" y="228">L4</text>
+        <circle class="node" cx="95" cy="275" r="5" stroke="#1E7A4C"/>
+        <text class="place" x="83" y="294" text-anchor="end">MEDICA</text>
+        <text class="sub" x="83" y="306" text-anchor="end">Zürich · 2025–26</text>
+
+        <rect x="264" y="158" width="22" height="14" rx="3" fill="#C53030"/>
+        <text class="badge-txt" x="275" y="166">L3</text>
+        <circle class="node" cx="360" cy="150" r="5" stroke="#C53030"/>
+        <text class="place" x="372" y="138">Flughafen</text>
+        <text class="place" x="372" y="150">Dübendorf</text>
+        <text class="sub" x="372" y="162">Rekrutenschule · 2025</text>
+
+        <rect x="229" y="208" width="22" height="14" rx="3" fill="#D9822B"/>
+        <text class="badge-txt" x="240" y="216">L2</text>
+        <text class="place" x="330" y="295">Australien</text>
+        <text class="sub" x="330" y="307">Reise · Aug–Dez 2024</text>
+      </svg>
+    </div>
+    <span class="stop-tag">D — Werdegang</span>
+  </section>
+
+  <section class="panel era stop" id="p-era1" style="--lc:#1E5FAE">
+    <div class="panel-inner">
+      <div class="era-block empty"></div>
+      <div class="era-line-row"><span class="era-node"></span></div>
+      <div class="era-block align-start">
+        <div class="era-card">
+          <span class="era-badge">L1</span>
+          <div class="era-date">2021 – 2024</div>
+          <div class="era-title">Berufslehre, Wirz Group AG, Zürich</div>
+          <div class="era-sub">Kaufmann EFZ — Marketing &amp; Kommunikation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel era stop" id="p-era2" style="--lc:#1E5FAE">
+    <div class="panel-inner">
+      <div class="era-block align-end">
+        <div class="era-card">
+          <span class="era-badge">L1</span>
+          <div class="era-date">2024 — Juli</div>
+          <div class="era-title">Fähigkeitszeugnis Kaufmann EFZ</div>
+          <div class="era-sub">Marketing &amp; Kommunikation</div>
+        </div>
+      </div>
+      <div class="era-line-row"><span class="era-node"></span></div>
+      <div class="era-block empty"></div>
+    </div>
+  </section>
+
+  <section class="panel era stop" id="p-era3" style="--lc:#D9822B">
+    <div class="panel-inner">
+      <div class="era-block empty"></div>
+      <div class="era-line-row"><span class="era-node"></span></div>
+      <div class="era-block align-start">
+        <div class="era-card">
+          <span class="era-badge">L2</span>
+          <div class="era-date">2024 — Aug – Dez</div>
+          <div class="era-title">Australien-Reise</div>
+          <span class="era-tag">CH / AU</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel era stop" id="p-era4" style="--lc:#C53030">
+    <div class="panel-inner">
+      <div class="era-block align-end">
+        <div class="era-card">
+          <span class="era-badge">L3</span>
+          <div class="era-date">2025 — Jan – Mai</div>
+          <div class="era-title">Rekrutenschule, Flughafen Dübendorf</div>
+          <div class="era-sub">Luftwaffe, Nachrichten</div>
+        </div>
+      </div>
+      <div class="era-line-row"><span class="era-node"></span></div>
+      <div class="era-block empty"></div>
+    </div>
+  </section>
+
+  <section class="panel era stop" id="p-era5" style="--lc:#1E7A4C">
+    <div class="panel-inner">
+      <div class="era-block empty"></div>
+      <div class="era-line-row"><span class="era-node"></span></div>
+      <div class="era-block align-start">
+        <div class="era-card">
+          <span class="era-badge">L4</span>
+          <div class="era-date">2025 – 2026<br>bis Juni</div>
+          <div class="era-title">MEDICA Medizinische Laboratorien AG, Zürich</div>
+          <div class="era-sub">Präanalytik, Vollerfassung</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel era stop" id="p-era6" style="--lc:#6A3FA0">
+    <div class="panel-inner">
+      <div class="era-block align-end">
+        <div class="era-card">
+          <span class="era-badge">L5</span>
+          <div class="era-date">2026 — März – Juni</div>
+          <div class="era-title">Digital Marketing Manager</div>
+          <div class="era-sub">KV Business School Zürich</div>
+          <span class="era-tag">Weiterbildung</span>
+        </div>
+      </div>
+      <div class="era-line-row"><span class="era-node"></span></div>
+      <div class="era-block empty"></div>
+    </div>
+  </section>
+
+  <section class="panel stop" id="p-ausbildung">
+    <div class="panel-inner">
+      <h2 class="ttl">Ausbildung &amp; Sprachen</h2>
+      <div class="two-col">
+        <div>
+          <div class="colhead">Schulbildung</div>
+          <div class="row-list">
+            <div><span class="k">Berufsschule KV</span><span class="v">2021–24</span></div>
+            <div><span class="k">Vorbereitungsjahr Viventa</span><span class="v">2020–21</span></div>
+            <div><span class="k">Sekundarschule Hirslanden</span><span class="v">2017–20</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="colhead">Sprachen</div>
+          <div class="row-list">
+            <div><span class="k">Deutsch</span><span class="v">Muttersprache</span></div>
+            <div><span class="k">Englisch</span><span class="v">Zweitsprache</span></div>
+            <div><span class="k">Französisch</span><span class="v">bis 10. Schuljahr</span></div>
+            <div><span class="k">Italienisch</span><span class="v">Freifach Sek</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="stop-tag">E — Ausbildung</span>
+  </section>
+
+  <section class="panel stop" id="p-freizeit">
+    <div class="panel-inner">
+      <h2 class="ttl">Freizeit</h2>
+      <p class="lede">Am liebsten draussen, am und im Wasser.</p>
+      <div class="stamp-row">
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M12 3v9"/><circle cx="12" cy="4.5" r="1.4" fill="currentColor" stroke="none"/><path d="M12 12c0 4-3 5-3 8a3 3 0 0 0 6 0c0-2-1-3-1-3"/></svg><span>Angeln</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="11" rx="5"/><circle cx="9.5" cy="11.5" r="1.5"/><circle cx="14.5" cy="11.5" r="1.5"/><path d="M9 20h6"/></svg><span>Tauchen</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 13 13l-4.5 2.5L11 11l4.5-2.5Z"/></svg><span>Reisen</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M7 20V5l9 3.2L7 11.5"/><path d="M4 20h10"/></svg><span>Golf</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7" ry="9.5"/><path d="M12 2.5v19M6 7h12M6 17h12"/></svg><span>Rugby</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M4 9h8M4 5h11"/><circle cx="17" cy="11" r="1.3" fill="currentColor" stroke="none"/><path d="M16 13c1.5 2 2.5 4 1.5 6.5"/></svg><span>Turmspringen</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M2 14c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M2 18c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M14 4 8 12h8l-3 6"/></svg><span>Wellenreiten</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M3 15h18l-2.5 3H5.5Z"/><circle cx="7.5" cy="19.5" r="1.3"/><circle cx="16.5" cy="19.5" r="1.3"/></svg><span>Skate</span></div>
+      </div>
+    </div>
+    <span class="stop-tag">F — Freizeit</span>
+  </section>
+
+  <section class="panel dark stop" id="p-kontakt">
+    <div class="panel-inner">
+      <h2 class="ttl">Kontakt</h2>
+      <p class="lede" style="color:var(--band-fg-soft)">Am einfachsten per Telefon oder Mail — antippen zum Kopieren.</p>
+      <div class="kontakt-grid">
+        <button class="c-chip" type="button" data-copy="toryn@hare.swiss">
+          <span><span class="c-label">E-Mail</span><span class="c-val">toryn@hare.swiss</span></span>
+          <span class="c-copy">Kopieren</span>
+        </button>
+        <button class="c-chip" type="button" data-copy="078 677 29 11">
+          <span><span class="c-label">Telefon</span><span class="c-val">078 677 29 11</span></span>
+          <span class="c-copy">Kopieren</span>
+        </button>
+      </div>
+      <p class="c-loc">Toryn Hare — Zürich, Schweiz</p>
+      <div class="barcode" aria-hidden="true" id="barcode"></div>
+    </div>
+    <span class="stop-tag">G — Kontakt</span>
+  </section>
+
+</div>
+<div class="progress"><i id="prog"></i></div>
+
+<script>
+(function(){
+  try{
+    var track = document.getElementById('track');
+    var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // wheel -> horizontal
+    track.addEventListener('wheel', function(e){
+      if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+        track.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, {passive:false});
+
+    // keyboard arrows
+    window.addEventListener('keydown', function(e){
+      if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var cur = track.scrollLeft;
+      var targets = stops.map(function(s){ return s.offsetLeft; });
+      var next;
+      if(e.key === 'ArrowRight'){ next = targets.find(function(t){ return t > cur + 4; }); }
+      else { next = targets.slice().reverse().find(function(t){ return t < cur - 4; }); }
+      if(next !== undefined){ track.scrollTo({left: next, behavior: reduceMotion ? 'auto' : 'smooth'}); }
+    });
+
+    // dot nav: group stops
+    var groups = [
+      {id:'p-hero', label:'Profil'},
+      {id:'p-kann', label:'Kann'},
+      {id:'p-moechte', label:'Möchte'},
+      {id:'p-map', label:'Werdegang'},
+      {id:'p-ausbildung', label:'Ausbildung'},
+      {id:'p-freizeit', label:'Freizeit'},
+      {id:'p-kontakt', label:'Kontakt'}
+    ];
+    var dotsWrap = document.getElementById('dots');
+    var dotEls = groups.map(function(g){
+      var b = document.createElement('button');
+      b.type = 'button'; b.title = g.label;
+      b.addEventListener('click', function(){
+        var el = document.getElementById(g.id);
+        if(el) track.scrollTo({left: el.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth'});
+      });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+    var groupEls = groups.map(function(g){ return document.getElementById(g.id); });
+
+    function onScroll(){
+      var x = track.scrollLeft;
+      var max = track.scrollWidth - track.clientWidth;
+      var pct = max > 0 ? (x / max) * 100 : 0;
+      var prog = document.getElementById('prog');
+      if(prog) prog.style.width = pct + '%';
+
+      var activeIdx = 0;
+      for(var i=0;i<groupEls.length;i++){
+        if(groupEls[i] && groupEls[i].offsetLeft <= x + 40) activeIdx = i;
+      }
+      dotEls.forEach(function(d,i){ d.classList.toggle('on', i === activeIdx); });
+    }
+    track.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    document.getElementById('hdrCta').addEventListener('click', function(){
+      var el = document.getElementById('p-kontakt');
+      if(el) track.scrollTo({left: el.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth'});
+    });
+
+    // bubbles pop
+    document.querySelectorAll('.bubble').forEach(function(b){
+      b.setAttribute('role','button');
+      b.setAttribute('tabindex','0');
+      var toggle = function(){
+        var nowPopped = !b.classList.contains('is-popped');
+        b.classList.toggle('is-popped');
+        if(nowPopped){
+          b.classList.add('just-popped');
+          setTimeout(function(){ b.classList.remove('just-popped'); }, 520);
+        }
+      };
+      b.addEventListener('click', toggle);
+      b.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+      });
+    });
+
+    // copy chips
+    document.querySelectorAll('.c-chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var val = chip.getAttribute('data-copy');
+        var done = function(){
+          chip.classList.add('copied');
+          var label = chip.querySelector('.c-copy');
+          var old = label.textContent;
+          label.textContent = 'Kopiert ✓';
+          setTimeout(function(){ chip.classList.remove('copied'); label.textContent = old; }, 1600);
+        };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(val).then(done).catch(function(){
+            var r = document.createRange(); r.selectNodeContents(chip.querySelector('.c-val'));
+            var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+          });
+        }
+      });
+    });
+
+    // barcode decoration
+    var bc = document.getElementById('barcode');
+    if(bc){
+      var pattern = [3,1,2,4,1,3,2,1,4,2,1,3,1,2,3,1,4,2,1,3,2,1];
+      pattern.forEach(function(w){
+        var i = document.createElement('i');
+        i.style.width = w + 'px';
+        i.style.height = (12 + w*5) + 'px';
+        bc.appendChild(i);
+      });
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
