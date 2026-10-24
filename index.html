@@ -229,18 +229,21 @@
   .row-list .k{ font-weight:600; }
   .row-list .v{ color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-align:right; white-space:nowrap; }
 
-  /* ---------- freizeit stamps ---------- */
-  .stamp-row{ display:flex; flex-wrap:wrap; gap:16px; }
+  /* ---------- freizeit: large faded sport illustrations, no circles ---------- */
+  .stamp-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px 6px; }
   .hobby{
-    width:78px; height:78px; border-radius:50%; border:1.5px dashed var(--ink-faint);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
-    text-align:center;
+    position:relative; aspect-ratio:1/1;
+    display:flex; align-items:flex-end; justify-content:center;
   }
-  .hobby svg{ width:20px; height:20px; stroke:var(--forest-ink); fill:none; stroke-width:1.6; }
-  .hobby span{ font-size:9.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; letter-spacing:.02em; }
-  .hobby:nth-child(2n){ transform:rotate(-4deg); }
-  .hobby:nth-child(3n){ transform:rotate(5deg); }
-  .hobby:nth-child(5n){ transform:rotate(-7deg); }
+  .hobby svg{
+    position:absolute; left:50%; top:4%; width:86%; height:86%; transform:translateX(-50%);
+    stroke:var(--forest-ink); fill:none; stroke-width:1; opacity:.22;
+  }
+  .hobby span{
+    position:relative; z-index:1; padding-bottom:3px;
+    font-size:9.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; letter-spacing:.02em;
+  }
+  @media (min-width:640px){ .stamp-row{ gap:10px 14px; } .hobby svg{ opacity:.26; } }
 
   /* ---------- kontakt ---------- */
   .kontakt-grid{ display:grid; gap:12px; }
@@ -254,6 +257,8 @@
   .c-chip .c-copy{ font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; border:1px solid var(--band-line); border-radius:3px; padding:5px 9px; white-space:nowrap; transition:background .2s ease, color .2s ease; }
   .c-chip.copied .c-copy{ background:var(--band-accent); color:var(--band-bg); border-color:var(--band-accent); }
   .c-loc{ font-size:13px; color:var(--band-fg-soft); margin-top:4px; }
+  .c-link{ text-decoration:none; }
+  .c-link .c-copy{ opacity:.8; }
   .barcode{ margin-top:22px; height:30px; display:flex; gap:2px; align-items:flex-end; opacity:.6; }
   .barcode i{ display:block; width:2px; background:var(--band-fg-soft); }
 
@@ -508,14 +513,14 @@
       <h2 class="ttl">Freizeit</h2>
       <p class="lede">Am liebsten draussen, am und im Wasser.</p>
       <div class="stamp-row">
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M12 3v9"/><circle cx="12" cy="4.5" r="1.4" fill="currentColor" stroke="none"/><path d="M12 12c0 4-3 5-3 8a3 3 0 0 0 6 0c0-2-1-3-1-3"/></svg><span>Angeln</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="11" rx="5"/><circle cx="9.5" cy="11.5" r="1.5"/><circle cx="14.5" cy="11.5" r="1.5"/><path d="M9 20h6"/></svg><span>Tauchen</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 13 13l-4.5 2.5L11 11l4.5-2.5Z"/></svg><span>Reisen</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M7 20V5l9 3.2L7 11.5"/><path d="M4 20h10"/></svg><span>Golf</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7" ry="9.5"/><path d="M12 2.5v19M6 7h12M6 17h12"/></svg><span>Rugby</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M4 9h8M4 5h11"/><circle cx="17" cy="11" r="1.3" fill="currentColor" stroke="none"/><path d="M16 13c1.5 2 2.5 4 1.5 6.5"/></svg><span>Turmspringen</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M2 14c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M2 18c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M14 4 8 12h8l-3 6"/></svg><span>Wellenreiten</span></div>
-        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M3 15h18l-2.5 3H5.5Z"/><circle cx="7.5" cy="19.5" r="1.3"/><circle cx="16.5" cy="19.5" r="1.3"/></svg><span>Skate</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M2 20 15 4"/><path d="M15 4c3 2 3 7 1 10"/><path d="M16 14c-1 1.5-3 1.5-4 0"/><path d="M5 17c1.5-1.5 4-1.5 5.5 0-1.5 1.5-4 1.5-5.5 0Z"/><path d="M10.5 17l2-1.2v2.4z"/></svg><span>Angeln</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M4 10c0-3 2.5-5 6-5s6 2 6 5-2.5 6-6 6-6-3-6-6Z"/><circle cx="8" cy="10" r="1.6"/><circle cx="12.5" cy="10" r="1.6"/><path d="M16 7c2-1 3 0 3 2s-1 2-1 2"/></svg><span>Tauchen</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M21 4 3 11l7 2 2 7 3-5 5 3Z"/></svg><span>Reisen</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M7 20V4l10 3.2L7 11.5"/><path d="M3 20h12"/><circle cx="15.5" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg><span>Golf</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7.5" ry="10"/><path d="M12 2v20M6 7.5h12M6 16.5h12"/></svg><span>Rugby</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M3 9h7"/><circle cx="14.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/><path d="M13 9c1 2 3 3 5 2.5"/><path d="M17.5 11.5c1 2 1 4-.5 6"/></svg><span>Turmspringen</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M2 15c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M2 19c2 2 4-2 6 0s4-2 6 0 4-2 6 0"/><path d="M13 3 7 13h7l-2.5 7"/></svg><span>Wellenreiten</span></div>
+        <div class="hobby"><svg viewBox="0 0 24 24"><path d="M3 14h18l-3 4H6Z"/><circle cx="7.5" cy="19" r="1.6"/><circle cx="16.5" cy="19" r="1.6"/><path d="M5.5 14l1.5-2.5M18.5 14l-1.5-2.5"/></svg><span>Skate</span></div>
       </div>
     </div>
     <span class="stop-tag">F — Freizeit</span>
@@ -524,7 +529,7 @@
   <section class="panel dark stop" id="p-kontakt">
     <div class="panel-inner">
       <h2 class="ttl">Kontakt</h2>
-      <p class="lede" style="color:var(--band-fg-soft)">Am einfachsten per Telefon oder Mail — antippen zum Kopieren.</p>
+      <p class="lede" style="color:var(--band-fg-soft)">Telefon &amp; Mail zum Kopieren antippen, LinkedIn &amp; Instagram öffnen direkt.</p>
       <div class="kontakt-grid">
         <button class="c-chip" type="button" data-copy="toryn@hare.swiss">
           <span><span class="c-label">E-Mail</span><span class="c-val">toryn@hare.swiss</span></span>
@@ -534,6 +539,14 @@
           <span><span class="c-label">Telefon</span><span class="c-val">078 677 29 11</span></span>
           <span class="c-copy">Kopieren</span>
         </button>
+        <a class="c-chip c-link" href="https://www.linkedin.com/in/toryn-hare-22b482235/" target="_blank" rel="noopener">
+          <span><span class="c-label">LinkedIn</span><span class="c-val">toryn-hare</span></span>
+          <span class="c-copy">Öffnen ↗</span>
+        </a>
+        <a class="c-chip c-link" href="https://www.instagram.com/toryn._.hare/" target="_blank" rel="noopener">
+          <span><span class="c-label">Instagram</span><span class="c-val">@toryn._.hare</span></span>
+          <span class="c-copy">Öffnen ↗</span>
+        </a>
       </div>
       <p class="c-loc">Toryn Hare — Zürich, Schweiz</p>
       <div class="barcode" aria-hidden="true" id="barcode"></div>
@@ -633,7 +646,7 @@
     });
 
     // copy chips
-    document.querySelectorAll('.c-chip').forEach(function(chip){
+    document.querySelectorAll('.c-chip:not(.c-link)').forEach(function(chip){
       chip.addEventListener('click', function(){
         var val = chip.getAttribute('data-copy');
         var done = function(){
