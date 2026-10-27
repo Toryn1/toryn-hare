@@ -127,8 +127,8 @@
     -webkit-mask-image:linear-gradient(to right, black 48%, transparent 94%);
     mask-image:linear-gradient(to right, black 48%, transparent 94%);
   }
-  .hero-photo-half img{ width:100%; height:100%; object-fit:cover; object-position:34% 16%; filter:grayscale(1) contrast(1.2) brightness(.92); }
-  .hero-photo-half::after{ content:""; position:absolute; inset:0; background:linear-gradient(170deg, rgba(23,88,180,.42), rgba(13,60,124,.9)); mix-blend-mode:multiply; }
+  .hero-photo-half img{ width:100%; height:100%; object-fit:cover; object-position:34% 16%; filter:grayscale(1) contrast(1.02) brightness(1.15); }
+  .hero-photo-half::after{ content:""; position:absolute; inset:0; background:linear-gradient(170deg, rgba(40,130,230,.24), rgba(28,110,195,.5)); mix-blend-mode:multiply; }
   .hero-text{ position:relative; z-index:2; margin-left:39%; padding-top:6px; }
   .hero-kicker{ font-family:'Outfit',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.1em; font-size:12px; color:var(--band-accent); margin:0 0 6px; }
   .hero-text h1{ font-family:'Outfit',sans-serif; font-weight:800; text-transform:uppercase; font-size:clamp(28px,8.5vw,58px); line-height:.92; letter-spacing:-.01em; }
@@ -212,6 +212,30 @@
   .manifesto{ display:grid; gap:16px; }
   .manifesto p{ font-family:'Outfit',sans-serif; font-weight:500; font-size:clamp(21px,5.5vw,30px); line-height:1.3; font-style:normal; }
   .manifesto p em{ color:var(--forest-ink); font-weight:800; font-style:normal; }
+
+  /* ---------- leistungen: luggage-tag chips that tap open ---------- */
+  .svc-row{ display:grid; gap:10px; }
+  .svc-chip{
+    --c: var(--forest-ink);
+    width:100%; text-align:left; font-family:inherit; color:var(--ink); cursor:pointer;
+    background:var(--paper-raised); border:1.5px dashed var(--c); border-radius:10px;
+    padding:13px 15px; transition:background .25s ease;
+  }
+  .svc-chip-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .svc-chip-top b{ font-size:14.5px; font-weight:700; }
+  .svc-plus{
+    flex:0 0 auto; width:20px; height:20px; border-radius:50%; border:1.5px solid var(--c); color:var(--c);
+    display:flex; align-items:center; justify-content:center; font-size:14px; line-height:1;
+    transition:transform .3s ease;
+  }
+  .svc-chip[aria-expanded="true"] .svc-plus{ transform:rotate(45deg); }
+  .svc-detail{
+    display:block; max-height:0; overflow:hidden; opacity:0;
+    font-size:13px; color:var(--ink-soft); margin-top:0;
+    transition:max-height .35s ease, opacity .3s ease, margin-top .35s ease;
+  }
+  .svc-chip[aria-expanded="true"] .svc-detail{ max-height:120px; opacity:1; margin-top:9px; }
+  @media (prefers-reduced-motion:reduce){ .svc-plus,.svc-detail{ transition:none; } }
 
   /* ---------- werdegang rail ---------- */
   .era{ flex:0 0 78vw; display:flex; flex-direction:column; justify-content:center; }
@@ -353,6 +377,32 @@
     <span class="stop-tag">C — Haltung</span>
   </section>
 
+  <section class="panel stop" id="p-leistungen">
+    <div class="panel-inner">
+      <h2 class="ttl">Leistungen</h2>
+      <p class="lede">Für Unternehmen, die Unterstützung im Marketing suchen — antippen für Details.</p>
+      <div class="svc-row">
+        <button class="svc-chip" type="button" style="--c:var(--forest-ink)" aria-expanded="false">
+          <span class="svc-chip-top"><b>Kampagnen &amp; Kreation</b><span class="svc-plus">+</span></span>
+          <span class="svc-detail">Planung und Koordination von Print-, Plakat-, POS- und Online-Kampagnen — von Briefing bis Umsetzung.</span>
+        </button>
+        <button class="svc-chip" type="button" style="--c:var(--brass)" aria-expanded="false">
+          <span class="svc-chip-top"><b>Content &amp; Social Media</b><span class="svc-plus">+</span></span>
+          <span class="svc-detail">Laufender Content für Website und Social-Media-Kanäle, abgestimmt auf die Marke.</span>
+        </button>
+        <button class="svc-chip" type="button" style="--c:var(--slate)" aria-expanded="false">
+          <span class="svc-chip-top"><b>Online-Marketing-Strategie</b><span class="svc-plus">+</span></span>
+          <span class="svc-detail">Digitale Massnahmen planen, umsetzen und die Konkurrenz im Blick behalten.</span>
+        </button>
+        <button class="svc-chip" type="button" style="--c:var(--neutral)" aria-expanded="false">
+          <span class="svc-chip-top"><b>Projekt- &amp; Lieferantenkoordination</b><span class="svc-plus">+</span></span>
+          <span class="svc-detail">Termine, Budget und externe Dienstleister zuverlässig im Griff.</span>
+        </button>
+      </div>
+    </div>
+    <span class="stop-tag">D — Leistungen</span>
+  </section>
+
   <section class="panel stop" id="p-map">
     <div class="panel-inner">
       <h2 class="ttl">Werdegang</h2>
@@ -399,7 +449,7 @@
         <text class="sub" x="330" y="307">Reise · Aug–Dez 2024</text>
       </svg>
     </div>
-    <span class="stop-tag">D — Werdegang</span>
+    <span class="stop-tag">E — Werdegang</span>
   </section>
 
   <section class="panel era stop" id="p-era1" style="--lc:#1E5FAE">
@@ -516,7 +566,7 @@
         </div>
       </div>
     </div>
-    <span class="stop-tag">E — Ausbildung</span>
+    <span class="stop-tag">F — Ausbildung</span>
   </section>
 
   <section class="panel stop" id="p-freizeit">
@@ -534,7 +584,7 @@
         <div class="bubble pending s" style="--c:var(--neutral);--ddelay:.84s">Skate</div>
       </div>
     </div>
-    <span class="stop-tag">F — Freizeit</span>
+    <span class="stop-tag">G — Freizeit</span>
   </section>
 
   <section class="panel dark stop" id="p-kontakt">
@@ -562,7 +612,7 @@
       <p class="c-loc">Toryn Hare — Zürich, Schweiz</p>
       <div class="barcode" aria-hidden="true" id="barcode"></div>
     </div>
-    <span class="stop-tag">G — Kontakt</span>
+    <span class="stop-tag">H — Kontakt</span>
   </section>
 
 </div>
@@ -599,6 +649,7 @@
       {id:'p-hero', label:'Profil'},
       {id:'p-kann', label:'Kann'},
       {id:'p-moechte', label:'Möchte'},
+      {id:'p-leistungen', label:'Leistungen'},
       {id:'p-map', label:'Werdegang'},
       {id:'p-ausbildung', label:'Ausbildung'},
       {id:'p-freizeit', label:'Freizeit'},
@@ -656,6 +707,14 @@
       b.addEventListener('click', toggle);
       b.addEventListener('keydown', function(e){
         if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+      });
+    });
+
+    // leistungen: tap a chip to expand its detail
+    document.querySelectorAll('.svc-chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var open = chip.getAttribute('aria-expanded') === 'true';
+        chip.setAttribute('aria-expanded', open ? 'false' : 'true');
       });
     });
 
